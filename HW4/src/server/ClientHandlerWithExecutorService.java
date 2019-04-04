@@ -36,12 +36,9 @@ public class ClientHandlerWithExecutorService implements Runnable
   public void run()
   {
     try
-    {
-    	//add checkAuthentication in this method
-    	
+    {  	
       server.notificationAllClientWithNewMessage("New client in our chat");
       server.notificationAllClientWithNewMessage("In our chat client count = " + clientCount);
-
 
       while (true)
       {
