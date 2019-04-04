@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class ServerWithExecutorService
@@ -20,13 +22,17 @@ public class ServerWithExecutorService
     {
       serverSocket = new ServerSocket(8888);
       System.out.println("Server launched");
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
 
       while (true)
       {
         clientSocket = serverSocket.accept();
         ClientHandlerWithExecutorService client = new ClientHandlerWithExecutorService(clientSocket, this);
         clientHandlers.add(client);
-        new Thread(client).start();
+        //new Thread(client).start();
+        executorService.execute(client);
+        
+        
       }
     }
     catch (Exception e)
@@ -54,10 +60,7 @@ public class ServerWithExecutorService
   {
     for (ClientHandlerWithExecutorService clientHandler : clientHandlers)
     {
-      clientHandler.sendMessage(msg);
-      //write to file
-      
-      
+      clientHandler.sendMessage(msg);    
     }
 
   }
@@ -65,7 +68,7 @@ public class ServerWithExecutorService
   public void removeClient(ClientHandlerWithExecutorService clientHandler)
   {
     clientHandlers.remove(clientHandler);
-  }
+  } 
 
   
 }
