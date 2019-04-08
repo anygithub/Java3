@@ -1,13 +1,13 @@
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
-public class RaceLauncher {
-	private static final int CARS_COUNT = 4;
-	private static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
-	private static final Semaphore TUNNEL = new Semaphore(CARS_COUNT / 2, false);
-	private static final CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
+public class RaceLauncher {	
+	static final int CARS_COUNT = 4;
+	static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
+	static final Semaphore TUNNEL = new Semaphore(CARS_COUNT / 2, false);
+	static final CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
 	
-    public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
         Car[] cars = new Car[CARS_COUNT];
