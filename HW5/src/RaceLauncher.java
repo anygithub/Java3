@@ -2,10 +2,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 public class RaceLauncher {
-	public static final int CARS_COUNT = 4;
-	public static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
-    public static final Semaphore TUNNEL = new Semaphore(CARS_COUNT / 2, false);
-    public static final CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
+	private static final int CARS_COUNT = 4;
+	private static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
+	private static final Semaphore TUNNEL = new Semaphore(CARS_COUNT / 2, false);
+	private static final CountDownLatch FINISH = new CountDownLatch(CARS_COUNT);
 	
     public static void main(String[] args) throws InterruptedException {
 		System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
