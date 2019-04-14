@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-class MethodWithPriority {
+public class MethodWithPriority {
     public Method method;
     public Integer priority;
 
